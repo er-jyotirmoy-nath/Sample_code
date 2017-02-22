@@ -1,0 +1,72 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1>My First Bootstrap Page</h1>
+  <p>This is some text.</p> 
+</div>
+<div class="row">
+	<div class="col-sm-12" id="res">
+	
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+   
+       
+    
+});
+
+</script>
+<script type="text/javascript">
+function getdata(){
+    Event = [];
+    Event[0] = "get";
+    Event[1] = "ok";
+    Event[2] = '4';
+    $.ajax({
+        url: 'ajax_161422022017.php',
+        type: "POST",
+        datatype: "json",
+        data: {Event: Event},
+        beforeSend: function (msg) {
+            $("#res").html("<i class=\"fa fa-refresh fa-spin\" style=\"font-size:24px;\" ></i>");
+
+        },
+        afterSend: function (msg) {
+            $("#res").html("<i class=\"fa fa-refresh fa-spin\" style=\"font-size:24px;\" ></i>");
+
+        },
+        success: function (data) {
+
+        	/*  $.getJSON(data.data, function(result){
+                 $.each(result, function(i, field){
+                     $("#res").append(field + " ");
+                 });
+             }); */
+             $.each(jQuery.parseJSON(data), function(i, field){
+                 $("#res").append(field.CUSTOMERNUMBER + " ");
+             });
+            
+        	 
+        }
+    });
+
+	
+}
+</script>
+</body>
+</html>

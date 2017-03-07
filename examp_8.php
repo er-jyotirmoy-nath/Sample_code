@@ -1,6 +1,8 @@
 //Json encode Special Characters
-
-
+<?php 
+mb_internal_encoding("iso-8859-1");
+mb_http_output("UTF-8");
+ob_start("mb_output_handler");
     $certnum = $_POST["tmv2data"][0];
     $tmv2_array = array();
     $tmv2_json = array();
@@ -22,3 +24,4 @@
 });
    
     echo json_encode( $res_get_tmv2);
+?>
